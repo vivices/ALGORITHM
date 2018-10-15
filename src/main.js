@@ -5,6 +5,11 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+router.beforeEach((from, to, next) => {
+  console.log('触发前置全局钩子')
+  next()
+})
+
 new Vue({
   router,
   store,

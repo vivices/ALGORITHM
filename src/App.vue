@@ -1,16 +1,18 @@
 <template>
   <div id="app">
+    <router-view name="Login" class="login-page"></router-view>
     <div id="left-sidebar">
       <img src="" alt="" class="logo">
-      <router-link to="/" class="sidebar-item">首页</router-link>
-      <router-link to="/messgae" class="sidebar-item">信息</router-link>
+      <router-link to="/home" class="sidebar-item">首页</router-link>
+      <router-link to="/message" class="sidebar-item">信息</router-link>
       <router-link to="/cards" class="sidebar-item">卡片</router-link>
     </div>
     <div id="main">
-      <div id="top-sidebar"></div>
-      <div id="container"><router-view/></div>
+      <div id="top-sidebar">
+        <router-view/>
+      </div>
+      <div id="container"></div>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -72,6 +74,10 @@ export default {
     #container{
 
     }
+  }
+  .login-page{
+    position: absolute;
+    
   }
 }
 </style>

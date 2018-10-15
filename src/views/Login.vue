@@ -1,8 +1,9 @@
 <template>
-	<p>message page</p>
+	<p>login page</p>
 </template>
 <script>
 export default {
-	name: 'message'
+	name: 'login'
 }
 </script>
+
