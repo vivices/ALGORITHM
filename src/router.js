@@ -1,38 +1,49 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import MainContent from './views/MainContent.vue'
 import Message from './views/Message.vue'
 import Cards from './views/Cards.vue'
 import Login from './views/Login.vue'
+import Home from './views/Home.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: Home,
-      beforeEnter: (to, from, next) => {
-        console.log('触发home Component钩子')
-        next()
-      }
-    },
-    {
-      path: '/message',
-      name: '/message',
-      component: Message
-    },
-    {
-      path: '/cards',
-      name: '/cards',
-      component: Cards
+      path: '/',
+      name: 'mainContent',
+      components: {
+        mainContent: MainContent
+      },
+      redirect: '/home',
+      children: [
+        {
+          path: '/home',
+          name: 'home',
+          component: Home
+        },
+        {
+          path: '/message',
+          name: 'message',
+          component: Message
+        },
+        {
+          path: '/cards',
+          name: 'cards',
+          component: Cards
+        },
+      ]
+      // beforeEnter: (to, from, next) => {
+      //   console.log('触发home Component钩子')
+      //   next()
+      // }
     },
     {
       path: '/login',
       name: 'login',
       components: {
-        Login: Login
+        login: Login
       }
     }
   ]
