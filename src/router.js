@@ -13,9 +13,7 @@ export default new Router({
     {
       path: '/',
       name: 'mainContent',
-      components: {
-        mainContent: MainContent
-      },
+      component: MainContent,
       redirect: '/home',
       children: [
         {
@@ -42,9 +40,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      components: {
-        login: Login
-      }
+      component: Login
     }
   ]
 })

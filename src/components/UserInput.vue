@@ -1,6 +1,6 @@
 <template>
 	<!-- <div class="username"> -->
-		<el-input :type="inputType" :placeholder="placeholder" class="ueser-input" :prefix-icon="inputIcon" v-model="value" @blur="getValue"></el-input>
+		<el-input :type="inputType" :placeholder="placeholder" class="ueser-input" :prefix-icon="inputIcon" :value="value" @input="getValue($event)" tabindex></el-input>
 	<!-- </div> -->
 </template>
 
@@ -10,15 +10,17 @@ export default {
 		'placeholder',
 		'inputIcon',
 		'inputType',
+		'value',
+		'password',
 	],
 	data () {
 		return {
-			value:''
+
 		}
 	},
 	methods: {
-		getValue () {
-			console.log(this.value)
+		getValue(e) {
+			this.$emit("input", e)
 		}
 	}
 }

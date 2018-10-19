@@ -8,7 +8,7 @@
       </div>
       <div id="content">
         <div id="top-sidebar">
-			<Header/>
+			<Header :isLogin="isLogin"/>
         </div>
         <div id="container">
           <transition name="slide">
@@ -25,9 +25,13 @@ import Header from '../components/Header'
 
 export default {
 	name: 'mainContent',
+	props: [
+		// 'isLogin'
+	],
 	data () {
+		console.log(this.$route.params)
 		return {
-
+			isLogin: this.$route.params.isLogin
 		}
 	},
 	components: {

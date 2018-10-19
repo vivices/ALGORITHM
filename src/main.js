@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import {Icon, Input, Button} from 'element-ui';
+import {Icon, Input, Button, Message} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // import '../public/element-variables.scss'
 
@@ -10,6 +10,9 @@ Vue.config.productionTip = false
 Vue.use(Icon);
 Vue.use(Input);
 Vue.use(Button);
+// Vue.use(Message);
+
+Vue.prototype.$message = Message;
 
 
 router.beforeEach((from, to, next) => {
