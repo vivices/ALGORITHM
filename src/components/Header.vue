@@ -4,7 +4,7 @@
 			<li>等待显示信息</li>
 		</ul>
 		<ul class="header__right">
-			<template v-if="isLogin">
+			<template v-if="userInfo">
 				<li><div class="header__right__info-num-icon"><i class="el-icon-message"></i><div class="header__right_info-num">10</div></div></li>
 				<li><div class="header__right__icon"><img src="../assets/icon.jpg" alt="icon"></div></li>
 			</template>
@@ -20,13 +20,16 @@
 
 export default {
 	props: [
-		'isLogin'
+		
 	],
 	data () {
 		return {
-			
+			userInfo:null
 		}
 	},
+	created() {
+        this.userInfo = this._getCookie();
+	}
 }
 
 

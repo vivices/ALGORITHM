@@ -1,10 +1,10 @@
 <template>
-	<div class="login">
+	<div class="login" v-loading="loading">
 		<div class="login-form">
 			<h3 class="login-form-title">VUE ADMIN</h3>
 			<form>
 				<UserInput placeholder="管理员输入admin" inputIcon="el-icon-edit-outline" inputType="text" v-model="username"/>
-				<UserInput placeholder="管理员输入admin" inputIcon="el-icon-document" inputType="password" class="input_password" v-model="password"/>
+				<UserInput placeholder="管理员输入admin" inputIcon="el-icon-document" inputType="userPwd" class="input_userPwd" v-model="userPwd"/>
 				<el-button type="primary" class="login-btn" @click="login">登陆</el-button>
 			</form>
 		</div>
@@ -21,7 +21,8 @@ export default {
 	data () {
 		return {
 			username: '',
-			password: ''
+			userPwd: '',
+			loading: false
 		}
 	},
 	components : {
@@ -31,27 +32,32 @@ export default {
 		// 'username': function(newValue, oldValue) {
 		// 	console.log(newValue)
 		// },
-		// 'password': function(newValue, oldValue) {
+		// 'userPwd': function(newValue, oldValue) {
 		// 	console.log(newValue)
 		// }
 	},
 	methods: {
 		login () {
-			// console.log(this.username,this.password)
-			if(this.username == 'admin' && this.password == 'admin') {
-				this.$router.push({
-					path: '/home', 
-					props: true,
-					params: { isLogin: true }
-				})
-				this.$message({
-					message: '登陆成功!',
-					type: 'success'
-				});
+			// console.log(this.username,this.userPwd)
+			if(this.username == 'admin' && this.userPwd == 'admin') {
+				this.loading = true;
+				setTimeout(() => {
+					this.$router.push({
+						path: '/home', 
+						props: true,
+						params: { isLogin: true }
+					})
+					this.loading = false;
+					this.$message({
+						message: '登陆成功!',
+						type: 'success'
+					});
+					this._setCookie(this.username,this.userPwd)
+				},1000);
 			} else {
 				this.$message.error('账号或密码错误');
 			}
-		}
+		},
 	},
 }
 
@@ -76,7 +82,7 @@ export default {
 			.ueser-input{
 				margin-top: 40px;
 			}
-			.input_password{
+			.input_userPwd{
 				margin-top: 20px;
 			}
 			.login-btn{

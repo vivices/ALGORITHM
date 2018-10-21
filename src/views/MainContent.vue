@@ -1,10 +1,6 @@
 <template>
-	<div class="mainContent">
+	<!-- <div class="mainContent">
       <div id="left-sidebar">
-        <img src="" alt="" class="logo">
-        <router-link to="/home" class="sidebar-item">首页</router-link>
-        <router-link to="/message" class="sidebar-item">信息</router-link>
-        <router-link to="/cards" class="sidebar-item">卡片</router-link>
       </div>
       <div id="content">
         <div id="top-sidebar">
@@ -16,8 +12,29 @@
           </transition>
 		</div>
       </div>
-	</div>
+	</div> -->
+	<el-container>
+		<el-aside width="200px">
+			<img src="" alt="" class="logo">
+			<router-link to="/home" class="sidebar-item">首页</router-link>
+			<router-link to="/message" class="sidebar-item">信息</router-link>
+			<router-link to="/cards" class="sidebar-item">卡片</router-link>
+		</el-aside>
+		<el-container>
+			<el-header>
+				<Header/>
+			</el-header>
+			<el-main>
+				<transition name="slide">
+					<router-view/>
+				</transition>
+			</el-main>
+		</el-container>
+	</el-container>
 </template>
+
+
+
 
 <script>
 
@@ -28,19 +45,65 @@ export default {
 	props: [
 		// 'isLogin'
 	],
-	data () {
-		console.log(this.$route.params)
-		return {
-			isLogin: this.$route.params.isLogin
-		}
-	},
 	components: {
 		Header: Header
+	},
+	data () {
+		return {
+			
+		}
+	},
+	methods: {
+
+	},
+	created () {
 	}
 }
 </script>
 
 <style scoped lang="less">
+	.el-container{
+		height: 100%;
+	}
+	.el-header {
+		background-color: #B3C0D1;
+		color: #333;
+		text-align: center;
+		line-height: 60px;
+	}
+	.el-aside {
+		background-color: #D3DCE6;
+		color: #333;
+		text-align: center;
+		.logo{
+			width: 30px;
+		}
+		.sidebar-item{
+			text-decoration: none;
+			color: #f5f5f560;
+			display: block;
+			text-align: center;
+			line-height: 50px;
+			font-weight: 600;
+		}
+		.sidebar-item:hover{
+			// background-color: #e5e5e5;
+			color: #fff;
+		}
+		.router-link-exact-active{
+			background-color: #e5e5e5;
+			color: #333;
+		}
+		.router-link-exact-active:hover{
+			color: #000;
+		}
+	}
+	.el-main {
+		background-color: #E9EEF3;
+		color: #333;
+		text-align: center;
+		line-height: 160px;
+	}
 	.mainContent{
 	display: flex;
 	flex-direction: row;
