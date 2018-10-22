@@ -1,33 +1,37 @@
 <template>
-	<!-- <div class="mainContent">
-      <div id="left-sidebar">
-      </div>
-      <div id="content">
-        <div id="top-sidebar">
-			<Header :isLogin="isLogin"/>
-        </div>
-        <div id="container">
-          <transition name="slide">
-            <router-view/>
-          </transition>
-		</div>
-      </div>
-	</div> -->
 	<el-container>
-		<el-aside width="200px">
-			<img src="" alt="" class="logo">
-			<router-link to="/home" class="sidebar-item">首页</router-link>
-			<router-link to="/message" class="sidebar-item">信息</router-link>
-			<router-link to="/cards" class="sidebar-item">卡片</router-link>
-		</el-aside>
+		<!-- <el-aside width="200px">
+			<el-row class="tac">
+				<el-col> -->
+					<el-menu default-active="/home" router :collapse="isCollapse" class="nav">
+						<el-menu-item index="/home">
+							<i class="el-icon-info"></i>
+							<span slot="title">首页</span>
+						</el-menu-item>
+						<el-menu-item index="/message">
+							<i class="el-icon-bell"></i>
+							<span slot="title">信息</span>
+						</el-menu-item>
+						<el-submenu index="1">
+							<template slot="title">
+								<i class="el-icon-tickets"></i>
+								<span slot="title">卡片</span>
+							</template>
+							<el-menu-item index="cards">选项1</el-menu-item>
+							<el-menu-item index="cards">选项2</el-menu-item>
+						</el-submenu>
+					</el-menu>
+				<!-- </el-col>
+			</el-row>
+		</el-aside> -->
 		<el-container>
 			<el-header>
-				<Header/>
+				<Header @triggerMenu="triggerMenu"/>
 			</el-header>
 			<el-main>
-				<transition name="slide">
+				<!-- <transition name="slide-right"> -->
 					<router-view/>
-				</transition>
+				<!-- </transition> -->
 			</el-main>
 		</el-container>
 	</el-container>
@@ -43,18 +47,20 @@ import Header from '../components/Header'
 export default {
 	name: 'mainContent',
 	props: [
-		// 'isLogin'
+		
 	],
 	components: {
 		Header: Header
 	},
 	data () {
 		return {
-			
+			isCollapse: false
 		}
 	},
 	methods: {
-
+		triggerMenu () {
+			this.isCollapse = !this.isCollapse
+		}
 	},
 	created () {
 	}
@@ -64,95 +70,34 @@ export default {
 <style scoped lang="less">
 	.el-container{
 		height: 100%;
+		.nav:not(.el-menu--collapse) {
+			width: 200px;
+			min-height: 400px;
+		}
+		// .nav>li{
+		// 	display: flex;
+		// 	justify-content: center;
+		// 	align-items: center;
+		// }
 	}
 	.el-header {
-		background-color: #B3C0D1;
+		background-color: #fff;
 		color: #333;
 		text-align: center;
 		line-height: 60px;
 	}
 	.el-aside {
-		background-color: #D3DCE6;
+		// background-color: #fff;
 		color: #333;
 		text-align: center;
-		.logo{
-			width: 30px;
-		}
-		.sidebar-item{
-			text-decoration: none;
-			color: #f5f5f560;
-			display: block;
-			text-align: center;
-			line-height: 50px;
-			font-weight: 600;
-		}
-		.sidebar-item:hover{
-			// background-color: #e5e5e5;
-			color: #fff;
-		}
-		.router-link-exact-active{
-			background-color: #e5e5e5;
-			color: #333;
-		}
-		.router-link-exact-active:hover{
-			color: #000;
+		.tac,.el-col,.el-menu{
+			height: 100%;
 		}
 	}
 	.el-main {
-		background-color: #E9EEF3;
+		background-color: #f5f5f5;
 		color: #333;
 		text-align: center;
 		line-height: 160px;
-	}
-	.mainContent{
-	display: flex;
-	flex-direction: row;
-	height: 100%;
-	#left-sidebar{
-		width: 10%;
-		height: 100%;
-		background-color: #333;
-		// overflow-y: scroll;
-		.logo{
-		width: 30px;
-		}
-		.sidebar-item{
-		text-decoration: none;
-		color: #f5f5f560;
-		display: block;
-		text-align: center;
-		line-height: 50px;
-		font-weight: 600;
-		}
-		.sidebar-item:hover{
-		// background-color: #e5e5e5;
-		color: #fff;
-		}
-		.router-link-exact-active{
-		background-color: #e5e5e5;
-		color: #333;
-		}
-		.router-link-exact-active:hover{
-		color: #000;
-		}
-	}
-		#content{
-			width: 90%;
-			background-color: gray;
-			#top-sidebar{
-			// width: 100%;
-			height: 60px;
-			background-color: #e5e5e5;
-				.login{
-					width: 100px;
-					height: 100px;
-					background-color: green;
-				}
-			}
-		}
-		.login-page{
-			position: absolute;
-			
-		}
 	}
 </style>

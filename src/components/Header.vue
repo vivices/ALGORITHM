@@ -1,12 +1,24 @@
 <template>
 	<div class="header">
 		<ul class="header__info">
-			<li>等待显示信息</li>
+			<li>
+  				<el-button type="primary" icon="el-icon-more" circle @click="$emit('triggerMenu')"></el-button>
+			</li>
 		</ul>
 		<ul class="header__right">
 			<template v-if="userInfo">
-				<li><div class="header__right__info-num-icon"><i class="el-icon-message"></i><div class="header__right_info-num">10</div></div></li>
-				<li><div class="header__right__icon"><img src="../assets/icon.jpg" alt="icon"></div></li>
+				<li>
+					<i class="el-icon-message header__message-icon"></i>
+					<el-badge :value="12" class="item header__message-badge"></el-badge>
+				</li>
+				<li class="el-dropdown-link">
+					<el-dropdown class="header__dropdwon" @command="logout">
+						<div class="header__right__icon"><img src="../assets/icon.jpg" alt="icon"></div>
+						<el-dropdown-menu slot="dropdown">
+							<el-dropdown-item command="logout">注销</el-dropdown-item>
+						</el-dropdown-menu>
+					</el-dropdown>
+				</li>
 			</template>
 			<template v-else>
 				<li class="login-btn"><router-link to="/login">登陆</router-link></li>
@@ -24,7 +36,16 @@ export default {
 	],
 	data () {
 		return {
-			userInfo:null
+			userInfo: null,
+			isCollapse: true
+		}
+	},
+	methods: {
+		logout (command) {
+			if(command == 'logout') {
+				this._setCookie("", "", -1);
+        		this.userInfo = this._getCookie();
+			}
 		}
 	},
 	created() {
@@ -52,8 +73,8 @@ export default {
 				border-radius: 20px;
 				overflow: hidden;
 				// background-size: cover; 
-				margin-left: 20px;
-				margin-right: 20px;
+				margin-left: 10px;
+				margin-right: 10px;
 			}
 			.header__right__info-num-icon{
 				display: flex;
@@ -69,6 +90,7 @@ export default {
 					color: #fff;
 					margin-top: -10px;
 					margin-left: 3px;
+					line-height: 20px;
 				}
 			}
 			&>li{
@@ -93,6 +115,22 @@ export default {
 			}
 			.login-btn:hover{
 				background-color: #404040;
+			}
+			.header__message-icon{
+				padding: 0 25px;
+			}
+			.header__message-badge{
+				position: absolute;
+				left: 37px;
+				top: -6px;
+			}
+			.header__dropdwon{
+				height: 100%;
+				display: flex;
+				align-items: center;
+			}
+			.el-badge__content{
+				border: none;
 			}
 		}
 	}

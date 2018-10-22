@@ -1,5 +1,7 @@
 <template>
-	<p>home page</p>
+	<el-card shadow="always">
+		 <p>home page</p>
+    </el-card>
 </template>
 <script>
 export default {
