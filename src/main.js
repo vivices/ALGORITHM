@@ -23,7 +23,6 @@ Vue.prototype._setCookie = (c_name, c_pwd, exdays = 7) => {
 }
 //读取cookie
 Vue.prototype._getCookie = () => {
-  debugger
   if (document.cookie.length > 0) {
     let userInfoArr = document.cookie.split('; '); //这里显示的格式需要切割一下自己可输出看下
     let username = userInfoArr[0].split('='), userPwd = userInfoArr[1].split('=')
@@ -46,10 +45,20 @@ Vue.prototype._clearCookie = () => {
   Vue.prototype._getCookie();
 }
 
-// router.beforeEach((from, to, next) => {
-//   // console.log('触发前置全局钩子')
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  //登陆拦截判断
+  let cookie = Vue.prototype._getCookie();
+  let path = to.path
+  if (path === '/login') {
+    next()
+    return
+  }
+  if(!cookie) {
+    next('/login')
+  }else {
+    next()
+  }
+})
 
 new Vue({
   router,

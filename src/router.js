@@ -14,7 +14,7 @@ export default new Router({
       path: '/',
       name: 'mainContent',
       component: MainContent,
-      redirect: '/home',
+      redirect:'/home',
       children: [
         {
           path: '/home',
@@ -31,6 +31,11 @@ export default new Router({
           name: 'cards',
           component: Cards
         },
+        // {
+        //   path: '/cards/select2',
+        //   name: 'cards',
+        //   component: Cards
+        // },
       ]
       // beforeEnter: (to, from, next) => {
       //   console.log('触发home Component钩子')

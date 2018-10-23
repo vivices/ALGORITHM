@@ -4,6 +4,11 @@
 			<li>
   				<el-button type="primary" icon="el-icon-more" circle @click="$emit('triggerMenu')"></el-button>
 			</li>
+			<li>
+				<el-breadcrumb separator="/">
+					<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+				</el-breadcrumb>
+			</li>
 		</ul>
 		<ul class="header__right">
 			<template v-if="userInfo">
@@ -19,9 +24,6 @@
 						</el-dropdown-menu>
 					</el-dropdown>
 				</li>
-			</template>
-			<template v-else>
-				<li class="login-btn"><router-link to="/login">登陆</router-link></li>
 			</template>
 		</ul>
 	</div>
@@ -44,12 +46,16 @@ export default {
 		logout (command) {
 			if(command == 'logout') {
 				this._setCookie("", "", -1);
-        		this.userInfo = this._getCookie();
+				// this.userInfo = this._getCookie();
+				this.$router.push({
+					path: '/login'
+				})
 			}
 		}
 	},
 	created() {
-        this.userInfo = this._getCookie();
+		this.userInfo = this._getCookie();
+		console.log(this)
 	}
 }
 
@@ -63,6 +69,14 @@ export default {
 		align-items: center;
 		height: 100%;
 		// padding: 15px 20px;
+		.header__info{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			&>li:first-child{
+				margin-right: 20px;
+			}
+		}
 		.header__right{
 			height: 100%;
 			display: flex;

@@ -1,29 +1,23 @@
 <template>
 	<el-container>
-		<!-- <el-aside width="200px">
-			<el-row class="tac">
-				<el-col> -->
-					<el-menu default-active="/home" router :collapse="isCollapse" class="nav">
-						<el-menu-item index="/home">
-							<i class="el-icon-info"></i>
-							<span slot="title">首页</span>
-						</el-menu-item>
-						<el-menu-item index="/message">
-							<i class="el-icon-bell"></i>
-							<span slot="title">信息</span>
-						</el-menu-item>
-						<el-submenu index="1">
-							<template slot="title">
-								<i class="el-icon-tickets"></i>
-								<span slot="title">卡片</span>
-							</template>
-							<el-menu-item index="cards">选项1</el-menu-item>
-							<el-menu-item index="cards">选项2</el-menu-item>
-						</el-submenu>
-					</el-menu>
-				<!-- </el-col>
-			</el-row>
-		</el-aside> -->
+			<el-menu default-active="/home" router :collapse="isCollapse" class="nav">
+				<el-menu-item index="/home">
+					<i class="el-icon-info"></i>
+					<span slot="title">首页</span>
+				</el-menu-item>
+				<el-menu-item index="/message">
+					<i class="el-icon-bell"></i>
+					<span slot="title">信息</span>
+				</el-menu-item>
+				<el-submenu index="1">
+					<template slot="title">
+						<i class="el-icon-tickets"></i>
+						<span slot="title">卡片</span>
+					</template>
+					<el-menu-item index="cards">选项1</el-menu-item>
+					<!-- <el-menu-item index="cards/select2">选项2</el-menu-item> -->
+				</el-submenu>
+			</el-menu>
 		<el-container>
 			<el-header>
 				<Header @triggerMenu="triggerMenu"/>
@@ -63,7 +57,8 @@ export default {
 		}
 	},
 	created () {
-	}
+		
+	},
 }
 </script>
 
@@ -74,11 +69,6 @@ export default {
 			width: 200px;
 			min-height: 400px;
 		}
-		// .nav>li{
-		// 	display: flex;
-		// 	justify-content: center;
-		// 	align-items: center;
-		// }
 	}
 	.el-header {
 		background-color: #fff;

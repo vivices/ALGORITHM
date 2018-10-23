@@ -42,6 +42,7 @@ export default {
 			if(this.username == 'admin' && this.userPwd == 'admin') {
 				this.loading = true;
 				setTimeout(() => {
+					this._setCookie(this.username,this.userPwd)
 					this.$router.push({
 						path: '/home', 
 						props: true,
@@ -52,7 +53,6 @@ export default {
 						message: '登陆成功!',
 						type: 'success'
 					});
-					this._setCookie(this.username,this.userPwd)
 				},1000);
 			} else {
 				this.$message.error('账号或密码错误');
