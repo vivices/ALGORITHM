@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import MainContent from './views/MainContent.vue'
-import Message from './views/Message.vue'
-import Cards from './views/Cards.vue'
-import Login from './views/Login.vue'
-import Home from './views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import MainContent from './views/MainContent.vue';
+import Message from './views/Message.vue';
+import Euclidean from './views/Algorithm/Euclidean.vue';
+import Login from './views/Login.vue';
+import Home from './views/Home.vue';
 
 Vue.use(Router)
 
-export default new Router({
+const routers = new Router({
   routes: [
     {
       path: '/',
@@ -27,9 +27,9 @@ export default new Router({
           component: Message
         },
         {
-          path: '/cards',
-          name: 'cards',
-          component: Cards
+          path: '/euclidean',
+          name: 'euclidean',
+          component: Euclidean
         },
         // {
         //   path: '/cards/select2',
@@ -48,4 +48,21 @@ export default new Router({
       component: Login
     }
   ]
+});
+
+routers.beforeEach((to, from, next) => {
+  //登陆拦截判断
+  let cookie = Vue.prototype._getCookie();
+  let path = to.path;
+  if (path === '/login') {
+    next()
+    return
+  }
+  if(!cookie) {
+    next('/login')
+  }else {
+    next()
+  }
 })
+
+export default routers;

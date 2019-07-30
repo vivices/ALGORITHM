@@ -1,10 +1,13 @@
 <template>
 	<el-card shadow="always">
-		 <p>cards page</p>
+		 <p>欧几里得算法</p>
     </el-card>
 </template>
 <script>
 export default {
-	name: 'cards'
+	name: 'euclidean',
+	mounted() {
+		
+	}
 }
 </script>

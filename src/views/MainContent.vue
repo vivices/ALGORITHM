@@ -12,9 +12,9 @@
 				<el-submenu index="1">
 					<template slot="title">
 						<i class="el-icon-tickets"></i>
-						<span slot="title">卡片</span>
+						<span slot="title">算法</span>
 					</template>
-					<el-menu-item index="cards">选项1</el-menu-item>
+					<el-menu-item index="euclidean">欧几里得算法</el-menu-item>
 					<!-- <el-menu-item index="cards/select2">选项2</el-menu-item> -->
 				</el-submenu>
 			</el-menu>

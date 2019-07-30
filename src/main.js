@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store/index';
 import Element from 'element-ui';
 import {Message} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -24,11 +24,11 @@ Vue.prototype._setCookie = (c_name, c_pwd, exdays = 7) => {
 //读取cookie
 Vue.prototype._getCookie = () => {
   if (document.cookie.length > 0) {
-    let userInfoArr = document.cookie.split('; '); //这里显示的格式需要切割一下自己可输出看下
+    let userInfoArr = document.cookie.split('; '); //这里显示的格式需要切割一下自己可输出查看
     let username = userInfoArr[0].split('='), userPwd = userInfoArr[1].split('=')
     // console.log(username, userPwd)
-    if(username[0] == 'username' && userPwd[0] == 'userPwd') {
-      return {
+    if(username[0] === 'username' && userPwd[0] === 'userPwd') {
+      return {  
         username: username[1],
         userPwd: userPwd[1]
       }
@@ -44,21 +44,6 @@ Vue.prototype._clearCookie = () => {
   Vue.prototype._setCookie ("", "", -1); //修改2值都为空，天数为负1天就好了
   Vue.prototype._getCookie();
 }
-
-router.beforeEach((to, from, next) => {
-  //登陆拦截判断
-  let cookie = Vue.prototype._getCookie();
-  let path = to.path
-  if (path === '/login') {
-    next()
-    return
-  }
-  if(!cookie) {
-    next('/login')
-  }else {
-    next()
-  }
-})
 
 new Vue({
   router,

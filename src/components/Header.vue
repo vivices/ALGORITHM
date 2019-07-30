@@ -55,7 +55,7 @@ export default {
 	},
 	created() {
 		this.userInfo = this._getCookie();
-		console.log(this)
+		// console.log(this)
 	}
 }
 
