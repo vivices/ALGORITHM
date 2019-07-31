@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Cookies from 'js-cookie';
 import MainContent from './views/MainContent.vue';
 import Message from './views/Message.vue';
 import Euclidean from './views/Algorithm/Euclidean.vue';
@@ -51,9 +52,9 @@ const routers = new Router({
 });
 
 routers.beforeEach((to, from, next) => {
-  //登陆拦截判断
-  let cookie = Vue.prototype._getCookie();
-  let path = to.path;
+  // 登陆拦截判断
+  const cookie = Cookies.get('username');
+  const path = to.path;
   if (path === '/login') {
     next()
     return

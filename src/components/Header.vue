@@ -30,35 +30,34 @@
 </template>
 
 <script>
+	import Cookies from 'js-cookie';
 
-
-export default {
-	props: [
-		
-	],
-	data () {
-		return {
-			userInfo: null,
-			isCollapse: true
-		}
-	},
-	methods: {
-		logout (command) {
-			if(command == 'logout') {
-				this._setCookie("", "", -1);
-				// this.userInfo = this._getCookie();
-				this.$router.push({
-					path: '/login'
-				})
+	export default {
+		props: [
+			
+		],
+		data () {
+			return {
+				userInfo: null,
+				isCollapse: true
 			}
+		},
+		methods: {
+			logout (command) {
+				if(command == 'logout') {
+					Cookies.remove('username');
+					Cookies.remove('userPwd');
+					this.$router.push({
+						path: '/login'
+					})
+				}
+			}
+		},
+		created() {
+			this.userInfo = Cookies.get('username');
+			// console.log(Cookies.get('username'));
 		}
-	},
-	created() {
-		this.userInfo = this._getCookie();
-		// console.log(this)
 	}
-}
-
 
 </script>
 

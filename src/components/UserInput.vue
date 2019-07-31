@@ -1,6 +1,6 @@
 <template>
 	<!-- <div class="username"> -->
-		<el-input :type="inputType" :placeholder="placeholder" class="ueser-input" :prefix-icon="inputIcon" :value="value" @input="getValue($event)" tabindex></el-input>
+		<el-input :type="inputType" :placeholder="placeholder" class="ueser-input" :prefix-icon="inputIcon" @input="getValue($event)" tabindex></el-input>
 	<!-- </div> -->
 </template>
 
@@ -10,7 +10,6 @@ export default {
 		'placeholder',
 		'inputIcon',
 		'inputType',
-		'value',
 		'password',
 	],
 	data () {

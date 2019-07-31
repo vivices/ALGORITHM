@@ -14,7 +14,8 @@
 
 <script>
 
-import UserInput from '../components/UserInput'
+import UserInput from '../components/UserInput';
+import Cookies from 'js-cookie';
 
 export default {
 	name: 'login',
@@ -29,12 +30,7 @@ export default {
 		UserInput: UserInput
 	},
 	watch: {
-		// 'username': function(newValue, oldValue) {
-		// 	console.log(newValue)
-		// },
-		// 'userPwd': function(newValue, oldValue) {
-		// 	console.log(newValue)
-		// }
+		
 	},
 	methods: {
 		login () {
@@ -42,7 +38,8 @@ export default {
 			if(this.username == 'admin' && this.userPwd == 'admin') {
 				this.loading = true;
 				setTimeout(() => {
-					this._setCookie(this.username,this.userPwd)
+					Cookies.set('username', this.username);
+					Cookies.set('userPwd', this.userPwd);
 					this.$router.push({
 						path: '/home', 
 						props: true,
