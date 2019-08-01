@@ -53,7 +53,8 @@ const routers = new Router({
 
 routers.beforeEach((to, from, next) => {
   // 登陆拦截判断
-  const cookie = Cookies.get('username');
+  const cookie = Cookies.get('username') === 'admin' && Cookies.get('userPwd') === 'admin';
+  // console.log(Cookies.get('username'), Cookies.get('userPwd'), cookie);
   const path = to.path;
   if (path === '/login') {
     next()

@@ -2,7 +2,11 @@
 	<div class="header">
 		<ul class="header__info">
 			<li>
-  				<el-button type="primary" icon="el-icon-more" circle @click="$emit('triggerMenu')"></el-button>
+  				<!-- <el-button icon="el-icon-copy-document" circle @click="$emit('triggerMenu')"></el-button> -->
+				<i 
+					class="el-icon-s-fold"
+					@click="$emit('triggerMenu')"
+				></i>
 			</li>
 			<li>
 				<el-breadcrumb separator="/">
@@ -11,7 +15,7 @@
 			</li>
 		</ul>
 		<ul class="header__right">
-			<template v-if="userInfo">
+			<template v-if="userInfo.username">
 				<li>
 					<i class="el-icon-message header__message-icon"></i>
 					<el-badge :value="12" class="item header__message-badge"></el-badge>
@@ -38,8 +42,12 @@
 		],
 		data () {
 			return {
-				userInfo: null,
 				isCollapse: true
+			}
+		},
+		computed: {
+			userInfo() {
+				return this.$store.state.common.userInfo;
 			}
 		},
 		methods: {
@@ -54,8 +62,8 @@
 			}
 		},
 		created() {
-			this.userInfo = Cookies.get('username');
-			// console.log(Cookies.get('username'));
+			// console.log(this.userInfo);
+			// this.userInfo = Cookies.get('username');
 		}
 	}
 
@@ -74,6 +82,9 @@
 			align-items: center;
 			&>li:first-child{
 				margin-right: 20px;
+				i {
+					cursor: pointer;
+				}
 			}
 		}
 		.header__right{

@@ -14,6 +14,7 @@
 
 <script>
 
+import { mapMutations } from 'vuex';
 import UserInput from '../components/UserInput';
 import Cookies from 'js-cookie';
 
@@ -33,6 +34,7 @@ export default {
 		
 	},
 	methods: {
+		...mapMutations('common', ['setUserInfo']),
 		login () {
 			// console.log(this.username,this.userPwd)
 			if(this.username == 'admin' && this.userPwd == 'admin') {
@@ -40,6 +42,10 @@ export default {
 				setTimeout(() => {
 					Cookies.set('username', this.username);
 					Cookies.set('userPwd', this.userPwd);
+					const userInfo = {
+						username: this.username
+					}
+					this.setUserInfo(userInfo);
 					this.$router.push({
 						path: '/home', 
 						props: true,
